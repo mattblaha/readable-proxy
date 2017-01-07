@@ -72,7 +72,13 @@ if (userAgent) {
 page.settings.loadImages = false;
 
 // ensure we don't waste time trying to load slow/missing resources
-page.settings.resourceTimeout = 1000;
+page.settings.resourceTimeout = 5000;
+
+// if we do timeout a slow resource, say something useful
+page.onResourceTimeout = function(request) {
+    console.log('Response (#' + request.id + '): ' + JSON.stringify(request));
+    phantom.exit(1);
+};
 
 page.onConsoleMessage = function(msg) {
   consoleLogs.push(msg);
