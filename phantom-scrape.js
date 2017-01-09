@@ -76,7 +76,7 @@ page.settings.resourceTimeout = 5000;
 
 // if we do timeout a slow resource, say something useful
 page.onResourceTimeout = function(request) {
-    console.log('Response (#' + request.id + '): ' + JSON.stringify(request));
+    require("system").stderr.write('Response (#' + request.id + '): ' + JSON.stringify(request));
 };
 
 page.onConsoleMessage = function(msg) {
